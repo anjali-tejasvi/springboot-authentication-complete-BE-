@@ -1,0 +1,44 @@
+#development version of configration
+server:
+  port: 8083
+
+#database connection
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_app
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      pool-name: AuthAppHikariPool
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+      auto-commit: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+
+security:
+  jwt:
+    secret: wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEYyq9zZc8HnLk3JvP2Xx9tYQ5R
+    issuer: api.substring.com
+    access-ttl-seconds: 3600
+    refresh-ttl-seconds: 86400
+    refresh-token-cookie-name: refreshToken
+    cookie-secure: true
+    cookie-http-only: true
+    cookie-same-site: lax
+    cookie-domain: .substring.com
